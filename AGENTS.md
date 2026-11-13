@@ -1,28 +1,9 @@
-## Primary
+# Roteador do fork
 
-Read @RULES.md if exists, to align communication style, collaboration specification, as well as other matters.
-
-Read @CONTEXT.md to align with the project's nature and shared language; consult `docs/adr/` for the architecture and the decisions behind it. README.md is human-facing onboarding (install, usage, contributing) and has grown large — read specific sections on demand (e.g. its "Project status" section for current state) rather than the whole file.
-
-Before you write or change a test, read `docs/test-standards.md`.
-
-## Agent skills
-
-### State and pitfalls
-
-Read @STATE.md and @PITFALLS.md if they exist.
-
-### Issue tracker
-
-Issues and PRDs live as GitHub issues in `aigengame/godot-agent` (via the `gh` CLI). See `docs/agents/issue-tracker.md`.
-
-### Triage labels
-
-Five canonical triage roles, default label names. See `docs/agents/triage-labels.md`.
-
-### Domain docs
-
-Multi-context: `CONTEXT-MAP.md` at the repo root is the routing authority — one entry per
-domain context. The root's own context is the `gda` domain (`CONTEXT.md` + `docs/adr/`);
-each non-root domain declares its layout and override rules in its own `AGENTS.md`. See
-`docs/agents/domain.md`.
+Leia [.github/copilot-instructions.md](.github/copilot-instructions.md),
+[workflow](docs/harness/workflow.md) e [política de modelos](docs/harness/model-policy.md).
+Leia explicitamente apenas os módulos pertinentes de `.github/instructions/`;
+este harness não deve pressupor ativação automática por applyTo.
+Para código herdado consulte CONTEXT-MAP.md, CONTEXT.md e docs/adr/;
+leia docs/test-standards.md antes de alterar testes e instruções locais do domínio.
+Consulte STATE.md/PITFALLS.md se pertinentes. Não copie políticas herdadas de modelos.

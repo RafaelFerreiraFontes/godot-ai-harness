@@ -1,18 +1,9 @@
-@AGENTS.md
+# Roteador do fork
 
-## Subagent model tier configuration (including built-in Explore/Plan/General subagents and workflow fan-out subagents)
-
-Concretizes the model-selection principle of RULES.md (if exists), which this
-table implements — pass `model:` explicitly on every dispatch; never silently inherit
-the session model.
-
-- Reconnaissance, exploration, summarization, and retrieval: **Sonnet** by default;
-  escalate to **Opus** only when the digest's precision directly gates downstream
-  design quality (e.g. ADR/issue digests feeding a design gate).
-- Large fan-out stages (N-vote adversarial panels, bulk refutation voters, bulk
-  search/fetch): **Sonnet** per voter/fetcher; the single synthesis, judge, or
-  high-stakes verifier stays **Opus**.
-- Design reviews, single-point adversarial validation, consistency checks, and
-  routine tasks: **Opus**.
-- **Fable** is used only for main-loop coordination, orchestration, final judgment,
-  or the design and implementation of the most complex tasks.
+Leia [.github/copilot-instructions.md](.github/copilot-instructions.md),
+[workflow](docs/harness/workflow.md) e [política de modelos](docs/harness/model-policy.md).
+Leia explicitamente apenas os módulos pertinentes de `.github/instructions/`;
+este harness não deve pressupor ativação automática por applyTo.
+Para código herdado consulte CONTEXT-MAP.md, CONTEXT.md e docs/adr/;
+leia docs/test-standards.md antes de alterar testes e instruções locais do domínio.
+Consulte STATE.md/PITFALLS.md se pertinentes. Não copie políticas herdadas de modelos.
