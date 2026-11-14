@@ -116,31 +116,6 @@ validar esta configuração. Registre toda troca de modelo e a evidência de sel
 
 ## Protocolo AGENT_RESULT
 
-Após o relatório, retorne um objeto JSON com os campos abaixo preenchidos com fatos.
-O exemplo é um esquema de entrega, não um resultado executado. Use `null` quando
-não houver veredito semântico; nunca preencha sucesso por inferência.
-
-```json
-{
-  "protocol": "AGENT_RESULT",
-  "role": "qa",
-  "task_id": "<ID da tarefa>",
-  "status": "tested",
-  "verdict": null,
-  "next_agent": "Gate",
-  "scope_changed": false,
-  "blocking_issue": false,
-  "changed_files": [],
-  "evidence": [],
-  "limitations": [],
-  "commit_performed": false,
-  "push_performed": false,
-  "human_approval": "pending"
-}
-```
-
-`status` descreve o estágio: use o valor ilustrado apenas se concluído, `changes_required`
-para correções ou `blocked` para impedimento. `verdict`, quando emitido, é `pass`,
-`fail` ou `inconclusive`. Ajuste `next_agent` à rota real. Em `evidence`, associe
-critério, comando/cwd, logs, exit code e veredito quando existirem; não invente
-comandos para papéis sem terminal. `human_approval` só muda com decisão explícita.
+Siga o [contrato compartilhado](../../docs/harness/agent-result.md), fonte única dos
+campos, estados, evidências e aprovação humana. Preencha com fatos; próximo papel
+é recomendação, nunca autorização para iniciar outro provedor.

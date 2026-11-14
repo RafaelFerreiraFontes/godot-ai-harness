@@ -84,3 +84,13 @@ O campo skills não é aceito no esquema Local: aparece apenas comentado como
 não foi incluído porque acoplaria o fluxo ao runtime que este projeto quer evitar.
 O Local está anunciado para remoção em fevereiro de 2027: migração futura exigirá
 revalidar campos, ferramentas e identificadores no harness de destino.
+
+## Etapa 02A — rotas nativas
+Consulte [Zed e agentes nativos](zed-native-agents.md) para IDs, modelos e diferenças
+entre os runtimes instalados. Claude fixa claude-opus-5-5/claude-sonnet-5-5; Codex
+fixa gpt-6.1-terra/gpt-6.1-sol. Não copie qualificadores Local do VS Code para CLI.
+Antigravity mantém model: inherit por limitação do esquema documentado, exigindo
+seleção manual exata Flash/Hydrogen antes de executar. Carbon segue pendente.
+O pai Codex deve confirmar read-only: o agente não pode impor sandbox próprio.
+Nenhuma rota invoca outro provedor automaticamente. [AGENT_RESULT](agent-result.md)
+é compartilhado pelos formatos, e ACP próprio pertence à futura 02B.

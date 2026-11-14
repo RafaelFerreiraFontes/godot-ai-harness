@@ -63,3 +63,10 @@ antes de enviar. O Reviewer ainda requer nova sessão; Gate requer contexto dist
 do QA. Orquestrador permite somente Code em agents; demais usam lista vazia.
 skills não é compatível com vscode e fica apenas como comentário YAML. Não foram
 criadas skills ou integrações. Veja a documentação oficial antes de migrar do Local.
+
+## Etapa 02A — formatos nativos e Zed
+Os seis papéis também estão representados nos formatos Claude, Codex e Antigravity.
+Consulte [operação no Zed](zed-native-agents.md), [contrato único AGENT_RESULT](agent-result.md)
+e [validação 02A](validation-02a.md). O fluxo entre provedores continua manual.
+Permissões por adapter precisam ser confirmadas; o runtime ACP pode diferir do CLI
+no PATH. VS Code mantém seus agentes existentes e referencia o mesmo protocolo.

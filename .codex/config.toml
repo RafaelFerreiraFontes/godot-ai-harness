@@ -1,0 +1,4 @@
+# Somente os papéis Codex Orquestrador/Reviewer são configurados nesta etapa.
+# Restrições no pai: custom agents não podem criar sandbox próprio.
+sandbox_mode = "read-only"
+approval_policy = "on-request"
