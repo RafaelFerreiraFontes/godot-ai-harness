@@ -1,0 +1,15 @@
+{
+  "protocol": "AGENT_RESULT",
+  "role": "coordenador",
+  "status": "planned",
+  "verdict": null,
+  "next_agent": "Orquestrador",
+  "scope_changed": false,
+  "blocking_issue": false,
+  "changed_files": [],
+  "evidence": [],
+  "limitations": [],
+  "commit_performed": false,
+  "push_performed": false,
+  "human_approval": "pending"
+}

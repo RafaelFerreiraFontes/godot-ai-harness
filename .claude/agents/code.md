@@ -2,8 +2,7 @@
 name: code
 description: Implementa tarefa delimitada com ownership e evidências locais.
 model: claude-sonnet-5-5
-tools: [Read, Glob, Grep, Write, Edit, Bash]
-disallowedTools: [Agent]
+tools: [Read, Glob, Grep, Write, Edit, Bash, Agent(Explore)]
 permissionMode: default
 effort: medium
 ---
@@ -31,6 +30,9 @@ Bash pode executar código arbitrário: cada comando precisa estar autorizado pe
 e respeitar aprovação do runtime; não use modos de bypass. Registre efeitos de testes/caches.
 Principal claude-sonnet-5-5; Opus 5.5 alternativo apenas por complexidade real e decisão explícita.
 Entregue diff, comandos/cwd, stdout/stderr, exit codes e vereditos ao Reviewer independente.
+Subagentes: pode delegar apenas buscas somente leitura ao Explore (Agent(Explore)). Nunca
+delegue edição, Bash ou revisão; ownership e escrita permanecem neste agente. Profundidade
+máxima 1 (alinhada a .codex/config.toml). Verifique o que Explore reportar antes de usar.
 
 ## Entrega
 

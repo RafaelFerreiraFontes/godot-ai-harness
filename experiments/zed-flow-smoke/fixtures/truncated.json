@@ -1,0 +1,7 @@
+{
+  "protocol": "AGENT_RESULT",
+  "role": "coordenador",
+  "task_id": "<ID da tarefa>",
+  "status": "planned",
+  "verdict": null,
+  "next_agent": "Orq

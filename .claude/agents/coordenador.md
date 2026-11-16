@@ -2,8 +2,8 @@
 name: coordenador
 description: Planeja escopo, arquitetura, riscos e critérios; somente leitura.
 model: claude-opus-5-5
-tools: [Read, Glob, Grep]
-disallowedTools: [Write, Edit, Bash, PowerShell, Agent]
+tools: [Read, Glob, Grep, Agent(Explore)]
+disallowedTools: [Write, Edit, Bash, PowerShell]
 permissionMode: plan
 effort: medium
 ---
@@ -28,6 +28,10 @@ Planeje a menor evolução possível a partir do comportamento atual. Registre o
 exclusões, arquitetura, riscos, dependências e critérios mensuráveis. Não implemente,
 edite arquivos ou execute comandos. Solicite inventário Git/evidências ao operador.
 Receba o pedido e devolva plano compacto ao Orquestrador, por transição manual.
+Subagentes: pode delegar apenas ao subagente somente leitura Explore (Agent(Explore)),
+para varreduras amplas de código/docs. Profundidade máxima 1 (alinhada a .codex/config.toml);
+Explore não cria subagentes, edita ou executa comandos. Conclusões de Explore são evidência
+a conferir, não decisão: cite arquivos lidos e registre o que foi delegado no resultado.
 Principal claude-opus-5-5; Sonnet 5.5 alternativo só por decisão explícita com motivo.
 Haiku 5.5 somente em levantamentos simples, sem substituir Opus em decisões complexas.
 
