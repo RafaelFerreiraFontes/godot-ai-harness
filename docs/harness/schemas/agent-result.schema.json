@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGENT_RESULT 02B",
+  "type": "object",
+  "required": ["protocol", "role", "task_id", "status", "verdict", "next_agent", "scope_changed", "blocking_issue", "changed_files", "evidence", "limitations", "commit_performed", "push_performed", "human_approval"],
+  "additionalProperties": false,
+  "properties": {
+    "protocol": {"const": "AGENT_RESULT"}, "role": {"enum": ["coordenador", "orquestrador", "code", "reviewer", "qa", "gate"]}, "task_id": {"type": "string", "minLength": 1}, "status": {"enum": ["planned", "ready", "implemented", "reviewed", "tested", "evaluated", "changes_required", "blocked"]}, "verdict": {"type": ["string", "null"], "enum": [null, "pass", "fail", "inconclusive"]}, "next_agent": {"enum": ["Coordenador", "Orquestrador", "Code", "Reviewer", "QA", "Gate", "HUMAN"]}, "scope_changed": {"type": "boolean"}, "blocking_issue": {"type": "boolean"}, "changed_files": {"type": "array", "items": {"type": "string"}}, "evidence": {"type": "array", "items": {"type": "object"}}, "limitations": {"type": "array", "items": {"type": "string"}}, "commit_performed": {"type": "boolean", "const": false}, "push_performed": {"type": "boolean", "const": false}, "human_approval": {"type": "string", "minLength": 1}, "metadata": {"type": "object"}
+  }
+}

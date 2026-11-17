@@ -3,6 +3,7 @@ RULES.md
 STATE.md
 *.local.md
 .audit-cache/
+.chat-decisions/
 # Python
 __pycache__/
 *.py[cod]

@@ -177,3 +177,12 @@ Consulta em 2026-11-13:
 - [Antigravity subagents](https://antigravity.google/docs/subagents)
 - [Antigravity discovery](https://antigravity.google/docs/customization-discovery/)
 - [Antigravity agents](https://antigravity.google/docs/cli/commands/agents)
+
+## Etapa 02B — persistência e handoff assistido
+
+O Zed/ACP continua sem automação cross-provider declarada. Antes de trocar Thread, use o
+coletor local de `agent-handoffs-02b.md` para persistir resultado, resumo e baseline. Abra
+manualmente a próxima Thread, selecione provider/modelo autorizado, confirme permissões e
+entregue somente o pacote compacto. Não altere settings globais nem assuma que hook abre
+Threads no Zed. Hooks dependem de versão, configuração e trust do runtime; o coletor pode
+arquivar eventos, mas nunca roteia/invoca uma sessão.

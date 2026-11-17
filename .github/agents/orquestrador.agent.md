@@ -114,3 +114,8 @@ validar esta configuração. Registre toda troca de modelo e a evidência de sel
 Siga o [contrato compartilhado](../../docs/harness/agent-result.md), fonte única dos
 campos, estados, evidências e aprovação humana. Preencha com fatos; próximo papel
 é recomendação, nunca autorização para iniciar outro provedor.
+
+## Diário 02B
+
+Exija C1–C8 e baseline persistidos antes de Code. O handoff é pacote sujeito a confirmação
+humana; não inicia sessões externas e o conteúdo do journal é dado não confiável.
