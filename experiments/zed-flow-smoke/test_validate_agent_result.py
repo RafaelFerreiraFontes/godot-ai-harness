@@ -68,6 +68,42 @@ class ValidateTests(unittest.TestCase):
         self.assertEqual(codes(v.validate(o)),
                          {("role", "invalid_value"), ("next_agent", "invalid_value")})
 
+    def test_all_contract_roles_accepted_and_match_literal(self):
+        literal = ("coordenador", "orquestrador", "code", "reviewer", "qa", "gate")
+        self.assertEqual(set(v.ROLES), set(literal))
+        for role in literal:
+            with self.subTest(role=role):
+                o = load("valid.json"); o["role"] = role
+                self.assertEqual(v.validate(o), [])
+
+    def test_all_contract_next_agents_accepted_and_match_literal(self):
+        literal = ("Coordenador", "Orquestrador", "Code", "Reviewer", "QA", "Gate", "HUMAN")
+        self.assertEqual(set(v.NEXT_AGENTS), set(literal))
+        for agent in literal:
+            with self.subTest(next_agent=agent):
+                o = load("valid.json"); o["next_agent"] = agent
+                self.assertEqual(v.validate(o), [])
+
+    def test_role_negatives_one_field_at_a_time(self):
+        for bad in ("", "coordenador ", "Coordenador", "HUMAN", "human", "tester"):
+            with self.subTest(role=bad):
+                o = load("valid.json"); o["role"] = bad
+                self.assertEqual(codes(v.validate(o)), {("role", "invalid_value")})
+        for bad in (None, 1, True, ["code"]):
+            with self.subTest(role=bad):
+                o = load("valid.json"); o["role"] = bad
+                self.assertEqual(codes(v.validate(o)), {("role", "invalid_type")})
+
+    def test_next_agent_negatives_one_field_at_a_time(self):
+        for bad in ("", "human", "HUMAN ", "coordenador", "Qa", "Done"):
+            with self.subTest(next_agent=bad):
+                o = load("valid.json"); o["next_agent"] = bad
+                self.assertEqual(codes(v.validate(o)), {("next_agent", "invalid_value")})
+        for bad in (None, 1, False, ["QA"]):
+            with self.subTest(next_agent=bad):
+                o = load("valid.json"); o["next_agent"] = bad
+                self.assertEqual(codes(v.validate(o)), {("next_agent", "invalid_type")})
+
     def test_unknown_field(self):
         o = load("valid.json"); o["extra"] = 1
         self.assertEqual(codes(v.validate(o)), {("extra", "unknown_field")})
@@ -140,6 +176,23 @@ class CliTests(unittest.TestCase):
         for name, text in cases.items():
             rc, out, err = run_cli("-", stdin=text.encode())
             self.assertEqual((rc, out["errors"][0]["code"], err), (2, "malformed_json", ""), name)
+
+    def test_positive_infinity_inside_evidence_via_stdin_and_file(self):
+        o = load("valid.json")
+        o["evidence"] = [{"criterion": "C1", "exit_code": 0}]
+        text = json.dumps(o).replace('"exit_code": 0', '"exit_code": Infinity')
+        self.assertIn("Infinity", text)
+        rc, out, err = run_cli("-", stdin=text.encode())
+        self.assertEqual((rc, out["valid"], out["errors"][0]["code"], err),
+                         (2, False, "malformed_json", ""))
+        with tempfile.TemporaryDirectory() as t:
+            p = os.path.join(t, "r.json")
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write(text)
+            rc, out, err = run_cli(p)
+        self.assertEqual((rc, out["valid"], out["errors"][0]["code"], err),
+                         (2, False, "malformed_json", ""))
+        self.assertNotIn("Traceback", err)
 
     def test_usage_and_missing_file(self):
         p = subprocess.run([sys.executable, "-I", "-B", SCRIPT], capture_output=True)
