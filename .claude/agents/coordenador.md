@@ -1,10 +1,9 @@
 ---
 name: coordenador
-description: Planeja escopo, arquitetura, riscos e critérios; somente leitura.
+description: Planeja escopo, arquitetura, riscos e critérios; Apenas leitura dos arquivos do projeto, escrita apenas dos arquivos para registro no `.chat-decisions\coordenador`.
 model: claude-opus-5-5
-tools: [Read, Glob, Grep, Agent(Explore)]
-disallowedTools: [Write, Edit, Bash, PowerShell]
-permissionMode: plan
+tools: [Read, Glob, Grep, Write, Edit, Bash, Agent(Explore)]
+permissionMode: default
 effort: medium
 ---
 
